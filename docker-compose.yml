@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    image: php:8.2-fpm
+    container_name: php
+    volumes:
+      - ./src:/var/www/html
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"      # Ограничение в 1 CPU
+          memory: "512M"   # Ограничение в 512 МБ памяти
+        reservations:
+          cpus: "0.5"      # Резерв 0.5 CPU
+          memory: "256M"   # Резерв 256 МБ памяти
