@@ -12,4 +12,4 @@ if (!isset($_SESSION["timeOpen"])) {
 }
 ?>
 
-<a class="button" href="register.php">Кнопка</a>
+<a class="button" href="register.php">Кнопка в форму регистрации</a>
